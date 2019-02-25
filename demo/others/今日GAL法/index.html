@@ -1,0 +1,106 @@
+<html>
+
+<head>
+	<meta charset='utf-8'>
+	<style>
+		body {
+			background-color: black;
+		}
+
+		.saying:after {
+			content: "|";
+			font-family: Arial, sans-serif;
+			line-height: 0;
+			display: inline-block;
+			vertical-align: baseline;
+			opacity: 1;
+			animation: caret 500ms infinite;
+		}
+
+		.optioni {
+			margin: 40px;
+			padding: 20px;
+			float: top;
+			background-color: black;
+			opacity: 0.7;
+			color: white;
+		}
+
+		.optioni:hover {
+			margin: 40px;
+			padding: 20px;
+			float: top;
+			background-color: gray;
+			opacity: 1.0;
+			color: white;
+		}
+
+		.abut {
+			background-color: black;
+			padding: 2px;
+			opacity: 0.7;
+			color: white;
+			display: block;
+			border: 1px solid;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px #888888;
+			width: auto;
+            transition:all 0.3s ease;
+		}
+
+		.abut:hover {
+			background-color: gray;
+			opacity: 0.7;
+			padding: 2px;
+			color: white;
+			display: block;
+			border: 1px solid;
+			border-radius: 10px;
+			box-shadow: 10px 10px 5px #888888;
+			width: auto;
+            transition:all 0.3s ease;
+		}
+
+		.noselect {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+	</style>
+	<script type="text/javascript" src='./graphList.js'>
+	</script>
+	<script type="text/javascript" src='./story.js'>
+	</script>
+	<script type="text/javascript" src='./typer.js'>
+	</script>
+</head>
+
+<body>
+	<center class='noselect' style="position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;width:100%;height:100%;">
+		<img id='backgroundImage' src="./sky.jpg" width="100%" height="100%" />
+	</center>
+	<div class='noselect' style="white-space:nowrap;position:fixed;left:0;top:0;bottom:0;z-index:0;width:auto;height:100%;">
+		<img id='plh0' src="" style='left:0px;bottom:0px;' />
+	</div>
+	<center class='noselect' style="white-space:nowrap;position:fixed;left:0;right:0;top:0;bottom:0;z-index:0;width:100%;height:100%;">
+		<img id='plh1' src="" style='bottom:0;' />
+	</center>
+	<div class='noselect' style="white-space:nowrap;position:fixed;right:0;top:0;bottom:0;z-index:0;width:auto;height:100%;">
+		<img id='plh2' src="" style='right:0px;bottom:0px;' />
+	</div>
+	<p id="textBox" class="saying noselect" style='margin:0;border:0;position:fixed;height:30%;z-index:2;left:1%;right:1%;bottom:2%;padding-left:15%;padding-right:15%;background-color:black;opacity:0.7;color:white;padding-top:1.5%;'></p>
+	<center id="speakerBox" class="noselect" style='margin:0;border:0;position:fixed;height:auto;padding-top:0.5%;padding-bottom:0.5%;z-index:2;left:1%;right:85%;bottom:37%;background-color:black;opacity:0.7;color:white;'></center>
+	<center class='noselect' id='options' style='position:fixed;top:3.3%;z-index:1;left:6.7%;right:6.7%'>
+		
+	</center>
+	<div class='noselect' id='recordBox' style='position:fixed;z-index:1;top:0;left:0;right:0;bottom:0;background-color:black;opacity:0.7;color:white;padding-left:2%;overflow:auto;'>
+		
+	</div>
+	<div class='noselect' id='buttonBox' style='position:fixed;left:0;top:0;z-index:3;'>
+		<a id='replayButton' class='abut' onclick='replay()'>重玩</a>
+		<a id='seeButton' class='abut' onclick='see()'>记录</a>
+	</div>
+</body>
