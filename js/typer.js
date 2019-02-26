@@ -1,13 +1,14 @@
-var saying=0;
+'use strict';
+let saying=0;
 function type(){
-    var typePanel = document.getElementById("textBox");
+    let typePanel = document.getElementById("textBox");
 	if(index>word.length)index=word.length;
-	var ans="";
-	var isRed=false;
-	var isBig=false;
-	var ign=false;
-	var bigFontSize=document.body.clientHeight*0.045;
-	for(var i=0;i<index;i++){
+	let ans="";
+	let isRed=false;
+	let isBig=false;
+	let ign=false;
+	let bigFontSize=document.body.clientHeight*0.045;
+	for(let i=0;i<index;i++){
 		if(word[i]=='`'){
 		    ign=!ign;
 			if(i==index-1&&index<word.length)index++;
@@ -54,19 +55,19 @@ function type(){
     }
 }
 function loadCG(){
-    var backgroundImage = document.getElementById("backgroundImage");
-    var plh = [document.getElementById("plh0"),document.getElementById("plh1"),document.getElementById("plh2")];
+    let backgroundImage = document.getElementById("backgroundImage");
+    let plh = [document.getElementById("plh0"),document.getElementById("plh1"),document.getElementById("plh2")];
 	backgroundImage.src=gameStory[pageCount][0][0];
-	for(var i=0;i<plh.length;i++){
+	for(let i=0;i<plh.length;i++){
 		plh[i].style.display='none';
 		plh[i].src='';
 	}
-	var hasPat=false;
-	for(var i=1;i<gameStory[pageCount][0].length;i++)if(gameStory[pageCount][0][i]!=''){
+	let hasPat=false;
+	for(let i=1;i<gameStory[pageCount][0].length;i++)if(gameStory[pageCount][0][i]!=''){
 		if(gameStory[pageCount][0][i][0]=='!')hasPat=true;
 	}
-	for(var i=1;i<gameStory[pageCount][0].length;i++)if(gameStory[pageCount][0][i]!=''){
-		var graphUrl=gameStory[pageCount][0][i];
+	for(let i=1;i<gameStory[pageCount][0].length;i++)if(gameStory[pageCount][0][i]!=''){
+		let graphUrl=gameStory[pageCount][0][i];
 		if(graphUrl[0]=='!'){
 			plh[i-1].style.filter='brightness(1.4)';
 			plh[i-1].parentNode.style.zIndex=1;
@@ -100,11 +101,11 @@ function loadPage(){
 		loadPage();
 		return;
 	}
-	var options = document.getElementById('options');
-	var typePanel = document.getElementById("textBox");
-	var speakerBox = document.getElementById("speakerBox");
-	var recordBox = document.getElementById('recordBox');
-	var buttonBox = document.getElementById("buttonBox");
+	let options = document.getElementById('options');
+	let typePanel = document.getElementById("textBox");
+	let speakerBox = document.getElementById("speakerBox");
+	let recordBox = document.getElementById('recordBox');
+	let buttonBox = document.getElementById("buttonBox");
 	buttonBox.style.display='block';
 	recordBox.style.display='none';
 	options.style.display='none';
@@ -137,8 +138,8 @@ function loadPage(){
 		winClick=false;
 		word="";
 		options.innerHTML="";
-		for(var i=1;i<gameStory[pageCount].length;i++){
-			var optioni=document.createElement('a');
+		for(let i=1;i<gameStory[pageCount].length;i++){
+			let optioni=document.createElement('a');
 			optioni.innerText=gameStory[pageCount][i][0];
 			optioni.style.display='block';
 			optioni.setAttribute("data-p",gameStory[pageCount][i][1]);
@@ -154,21 +155,21 @@ function loadPage(){
 		myInterval=null;
 	}
 }
-var seeing=false;
+let seeing=false;
 function see(){
-	var options = document.getElementById('options');
-	var typePanel = document.getElementById("textBox");
-	var speakerBox = document.getElementById("speakerBox");
-	var buttonBox = document.getElementById("buttonBox");
+	let options = document.getElementById('options');
+	let typePanel = document.getElementById("textBox");
+	let speakerBox = document.getElementById("speakerBox");
+	let buttonBox = document.getElementById("buttonBox");
 	options.innerHTML="";
 	buttonBox.style.display='none';
 	typePanel.style.display='none';
 	speakerBox.style.display='none';
-	var recordBox = document.getElementById('recordBox');
+	let recordBox = document.getElementById('recordBox');
 	recordBox.style.display='block';
-	var recordVal=document.createElement('div');
+	let recordVal=document.createElement('div');
 	recordVal.innerText=records;
-	var recordsEnd=document.createElement('a');
+	let recordsEnd=document.createElement('a');
 	recordVal.appendChild(recordsEnd);
 	recordBox.appendChild(recordVal);
 	recordsEnd.scrollIntoView();
@@ -184,10 +185,10 @@ function replay(){
 function resize(){
 	document.body.style.fontSize=document.body.clientHeight*0.03;
 	loadCG();
-	var replayButton = document.getElementById("replayButton");
+	let replayButton = document.getElementById("replayButton");
 	replayButton.style.marginTop=document.body.clientHeight*0.015;
 	replayButton.style.marginLeft=document.body.clientHeight*0.01;
-	var seeButton = document.getElementById("seeButton");
+	let seeButton = document.getElementById("seeButton");
 	seeButton.style.marginTop=document.body.clientHeight*0.015;
 	seeButton.style.marginLeft=document.body.clientHeight*0.01;
 }
@@ -202,7 +203,7 @@ window.onload=function(){
 		}
 		if(seeing){
 			seeing=false;
-			var options = document.getElementById('recordBox');
+			let options = document.getElementById('recordBox');
 			options.innerHTML="";
 			loadPage();
 			return;
@@ -211,9 +212,9 @@ window.onload=function(){
 			if(index<word.length-1){
 				index=word.length;
 			}else{
-				var ans="";
-				var ign=false;
-				for(var i=0;i<word.length;i++){
+				let ans="";
+				let ign=false;
+				for(let i=0;i<word.length;i++){
 					if(word[i]=='`'){
 						ign=!ign;
 						continue;
