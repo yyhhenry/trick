@@ -222,7 +222,7 @@ function savei(i){
 		optioni.innerText='取消';
 		optioni.style.display='block';
 		optioni.onclick=function(){
-			save();
+			save(i);
 			clickSolved=true;
 		}
 		optioni.className='optioni';
@@ -238,7 +238,7 @@ function savei(i){
 		optioni.style.display='block';
 		optioni.onclick=function(){
 			window.localStorage['存档点'+i]=JSON.stringify(数据);
-			save();
+			save(i);
 			clickSolved=true;
 		}
 		optioni.className='optioni';
@@ -262,7 +262,7 @@ function savei(i){
 		optioni.style.display='block';
 		optioni.onclick=function(){
 			window.localStorage.removeItem('存档点'+i);
-			save();
+			save(i);
 			clickSolved=true;
 		}
 		optioni.className='optioni';
@@ -271,7 +271,7 @@ function savei(i){
 	winClick=false;
 	clickSolved=true;
 }
-save=function(){
+save=function(k){
 	let options = document.getElementById('options');
 	let typePanel = document.getElementById('textBox');
 	let speakerBox = document.getElementById('speakerBox');
@@ -313,6 +313,9 @@ save=function(){
 		}
 		optioni.className='optioni';
 		options.appendChild(optioni);
+		if(i==k){
+			optioni.scrollIntoView();
+		}
 	}
 	winClick=false;
 	clickSolved=true;
