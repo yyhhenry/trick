@@ -90,8 +90,8 @@ function loadCG(){
 			plh[i-1].style.height='100%';
 			plh[i-1].style.paddingTop=0;
 		}else{
-			plh[i-1].style.height=document.body.clientHeight*graphList[graphUrl];
-			plh[i-1].style.paddingTop=document.body.clientHeight*(1-graphList[graphUrl]);
+			plh[i-1].style.height=document.documentElement.clientHeight*graphList[graphUrl];
+			plh[i-1].style.paddingTop=document.documentElement.clientHeight*(1-graphList[graphUrl]);
 		}
 	}
 }
