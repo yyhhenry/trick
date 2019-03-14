@@ -1,52 +1,30 @@
 'use strict';
-let data;
-let labels=new Array();
+let 数据;
+let 标签=new Array();
 let index;
-let pageCount;
 let word;
 let myInterval;
 let winClick;
 let clickSolved=false;
-let records="";
-let gameStory;
-function solveLabel(i){
-	if(gameStory[i].length==2){
-			if(gameStory[i][1].length==2){
-				gameStory[i][1][2]=i+1;
-			}else{
-				gameStory[i][1][2]=labels[gameStory[i][1][2]];
-			}
-	}else{
-		for(let j=1;j<gameStory[i].length;j++){
-			if(gameStory[i][j].length==1){
-				gameStory[i][j][1]=i+1;
-			}else{
-				gameStory[i][j][1]=labels[gameStory[i][j][1]];
-			}
-		}
-	}
+let 剧情;
+function 跳至标签(v){
+	数据.页码=标签[v]-1;
 }
-function jumpLabel(v){
-	pageCount=labels[v]-1;
-}
-function display(v){
-	let nowPageCount=pageCount;
-	pageCount=gameStory.length-1;
-	gameStory.push(v);
-	solveLabel(gameStory.length-1);
-	gameStory.push(function(){
-		console.log(pageCount,nowPageCount);
-		pageCount=nowPageCount;
-	});
-}
-gameStory=[
+剧情=[
 	[
 		['img/background.jpg','','',''],
-			['白寒','欢迎来到我们的世界，我将是你的领路人']
+			['白寒','进入游戏之前，先填一下你的名字']
+	],
+	function(){
+		数据.名字=prompt('键入你的名字');
+	},
+	[
+		['img/background.jpg','','',''],
+			['${数据.名字}','填好了']
 	],
 	[
 		['img/background.jpg','','',''],
-			['白寒','首先，你会被系统随机设定一个属性值——**魅力**']
+			['白寒','OK，首先，你会被系统随机设定一个属性值——**魅力**']
 	],
 	[
 		['img/background.jpg','','',''],
@@ -54,21 +32,21 @@ gameStory=[
 	],
 	
 	function(){
-		data['魅力']=Math.round(Math.random()*100);
+		数据.魅力=Math.round(Math.random()*100);
 	},
 	function(){
-		if(data['魅力']>=95){
-			jumpLabel('欧皇的魅力');
-		}else if(data['魅力']>=45){
-			jumpLabel('一般的魅力');
-		}else if(data['魅力']>=5){
-			jumpLabel('很差的魅力');
+		if(数据.魅力>=95){
+			跳至标签('欧皇的魅力');
+		}else if(数据.魅力>=45){
+			跳至标签('一般的魅力');
+		}else if(数据.魅力>=5){
+			跳至标签('很差的魅力');
 		}else{
-			jumpLabel('非酋的魅力');
+			跳至标签('非酋的魅力');
 		}
 	},
 	function(){
-		jumpLabel('待续');
+		跳至标签('待续');
 	},
 	
 	'欧皇的魅力',[
@@ -81,7 +59,7 @@ gameStory=[
 	],
 	[
 		['img/background.jpg','','',''],
-			['白寒','##地球已经不能阻挡你的脚步##']
+			['白寒','##地球已经容不下你突破天际的魅力##']
 	],
 	[
 		['img/background.jpg','','',''],
@@ -111,12 +89,10 @@ gameStory=[
 		['img/background.jpg','','',''],
 			['白寒','既然你是**非酋**我也不瞒着你了']
 	],
-	function(){
-		display([
-			['img/background.jpg','','',''],
-				['白寒','依照系统随机设定，你的**魅力**属性值只有**'+data['魅力']+'**点(总100点)']
-		]);
-	},
+	[
+		['img/background.jpg','','',''],
+			['白寒','依照系统随机设定，你的**魅力**属性值只有**${数据.魅力}**点(总100点)']
+	],
 	[
 		['img/background.jpg','','',''],
 			['白寒','##你等死吧##','待续']
@@ -128,13 +104,27 @@ gameStory=[
 			['作者','我还在写，**请自觉读档**','待续']
 	],
 ];
-for(let i=0;i<gameStory.length;i++){
-	if(typeof(gameStory[i])=='string'){
-		labels[gameStory[i]]=i+1;
+for(let i=0;i<剧情.length;i++){
+	if(typeof(剧情[i])=='string'){
+		标签[剧情[i]]=i+1;
 	}
 }
-for(let i=0;i<gameStory.length;i++){
-	if(typeof(gameStory[i])=='string')continue;
-	if(typeof(gameStory[i])=='function')continue;
-	solveLabel(i);
+for(let i=0;i<剧情.length;i++){
+	if(typeof(剧情[i])=='string')continue;
+	if(typeof(剧情[i])=='function')continue;
+	if(剧情[i].length==2){
+			if(剧情[i][1].length==2){
+				剧情[i][1][2]=i+1;
+			}else{
+				剧情[i][1][2]=标签[剧情[i][1][2]];
+			}
+	}else{
+		for(let j=1;j<剧情[i].length;j++){
+			if(剧情[i][j].length==1){
+				剧情[i][j][1]=i+1;
+			}else{
+				剧情[i][j][1]=标签[剧情[i][j][1]];
+			}
+		}
+	}
 }

@@ -16,7 +16,7 @@ body {
 	margin: 40px;
 	padding: 20px;
 	float: top;
-	background-color: black;
+	background-color: #000000;
 	opacity: 0.7;
 	color: white;
 }
@@ -25,7 +25,7 @@ body {
 	margin: 40px;
 	padding: 20px;
 	float: top;
-	background-color: gray;
+	background-color: #444444;
 	opacity: 1.0;
 	color: white;
 }
@@ -64,3 +64,22 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 }
+
+::-webkit-scrollbar{  
+	width: 10px; 
+}
+
+::-webkit-scrollbar-track{  
+	border-radius: 10px;  
+	background-color: #00000000;
+}
+
+::-webkit-scrollbar-thumb{  
+	border-radius: 10px; 
+	background-color: gray;
+}  
+
+::-webkit-scrollbar-thumb:hover{  
+	border-radius: 10px; 
+	background-color: #eeeeee;
+}  
