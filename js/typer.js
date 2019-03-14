@@ -337,7 +337,7 @@ window.onload=function(){
 	if(window.localStorage.默认存档!=null){
 		数据=JSON.parse(window.localStorage.默认存档);
 	}else{
-		数据={页码:0,记录:''};
+		数据={页码:0,回想:''};
 	}
 	loadPage();
 	resize();
