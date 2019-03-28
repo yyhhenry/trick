@@ -340,10 +340,13 @@ window.onload=function(){
 	if(window.localStorage.默认存档!=null){
 		数据=JSON.parse(window.localStorage.默认存档);
 	}else{
-		数据={页码:0,回想:''};
+		数据={页码:0,回想:'',音乐:''};
 	}
 	loadPage();
 	resize();
+	let audioRec=数据.音乐;
+	数据.音乐='';
+	播放音乐(audioRec);
 	window.onclick=function () {
 		if(clickSolved){
 			clickSolved=false;

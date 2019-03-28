@@ -10,7 +10,22 @@ let 剧情;
 function 跳至标签(v){
 	数据.页码=标签[v]-1;
 }
+function 播放音乐(s){
+	let audio=document.getElementById('audio');
+	if(s==null){
+		数据.音乐='';
+		audio.src='';
+	}else if(数据.音乐!=s){
+		audio.src=s;
+		数据.音乐=s;
+		audio.load();
+		audio.play();
+	}
+}
 剧情=[
+	function(){
+		播放音乐('./audio/神秘园之歌.mp3');
+	},
 	[
 		['img/background.jpg','','',''],
 			['作者','进入游戏之前，先填一下你的名字']
@@ -36,6 +51,9 @@ function 跳至标签(v){
 				break;
 			}
 		}
+	},
+	function(){
+		播放音乐();
 	},
 	[
 		['img/background.jpg','','',''],
@@ -65,7 +83,10 @@ function 跳至标签(v){
 		}
 	},
 	
-	'欧皇的魅力',[
+	'欧皇的魅力',function(){
+		播放音乐('./audio/极致纯电音.mp3');
+	},
+	[
 		['img/background.jpg','','',''],
 			['作者','##卧槽##']
 	],
@@ -115,7 +136,10 @@ function 跳至标签(v){
 	],
 	
 	
-	'待续',[
+	'待续',function(){
+		播放音乐('./audio/极致纯电音.mp3');
+	},
+	[
 		['img/background.jpg','','',''],
 			['作者','我还在写，**请自觉读档**','待续']
 	],
