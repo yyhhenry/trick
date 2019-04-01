@@ -40,7 +40,7 @@ function 播放音乐(s){
 			return true;
 		}
 		数据.名字='白寒';
-		while(1){
+		while(true){
 			数据.名字=prompt('键入你的名字',数据.名字);
 			if(数据.名字==null||isnull(数据.名字)){
 				alert('名字不能为空');
