@@ -386,6 +386,11 @@ window.onload=function(){
 			}
 		}
 	}
+	window.onkeyup=function(event){
+		if(event.key=='Enter'){
+			window.onclick();
+		}
+	}
 }
 window.onbeforeunload=function(){
 	window.localStorage.默认存档=JSON.stringify(数据);
