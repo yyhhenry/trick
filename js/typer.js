@@ -1,52 +1,49 @@
 'use strict';
 let saying=0;
-function type(){
-    let typePanel = document.getElementById('textBox');
-	if(index>word.length)index=word.length;
-	let ans='';
-	let isRed=false;
-	let isBig=false;
-	let ign=false;
-	let bigFontSize=document.documentElement.clientHeight*0.045;
-	for(let i=0;i<index;i++){
-		if(word[i]=='\t'){
-		    ign=!ign;
-			if(i==index-1&&index<word.length)index++;
-			continue;
+function renderText(s){
+	let lines=s.split('\n');
+	let ans=[];
+	let firstLine=true;
+	for(let i=0;i<lines.length;i++){
+		if(lines[i]=='')continue;
+		if(!firstLine){
+			ans.push(document.createElement('br'));
 		}
-		if(!ign&&word[i]=='*'&&i+1<word.length&&word[i+1]=='*'){
-			if(i==index-1&&index+1<word.length)index+=2;
-			i++;
-			isRed=!isRed;
-			continue;
+		firstLine=false;
+		let big=false;
+		if(lines[i].substring(0,2)=='# '){
+			big=true;
+			lines[i]=lines[i].substring(2);
 		}
-		if(!ign&&word[i]=='#'&&i+1<word.length&&word[i+1]=='#'){
-			if(i==index-1&&index+1<word.length)index+=2;
-			i++;
-			isBig=!isBig;
-			continue;
-		}
-		if(isRed){
-			ans+='<strong><font color=\'red\'>';
-		}
-		if(isBig){
-			ans+='<font style=\'font-size:'+bigFontSize+'px\'>';
-		}
-		if(word[i]=='\n'){
-			ans+='<br>';
-		}else{
-			ans+=word[i];
-			
-		}
-		if(isBig){
-			ans+='</font>';
-		}
-		if(isRed){
-			ans+='</font></strong>';
+		let colors=lines[i].split('**');
+		for(let j=0;j<colors.length;j++){
+			for(let k=0;k<colors[j].length;k++){
+				if(colors[j][k]==' ')continue;
+				let element;
+				if(j%2==1){
+					element=document.createElement('strong');
+					element.style.color='red';
+				}else{
+					element=document.createElement('font');
+				}
+				if(big){
+					element.style.fontSize='1.5em';
+				}else{
+					element.style.fontSize='1em';
+				}
+				element.innerText=colors[j][k];
+				ans.push(element);
+			}
 		}
 	}
-	typePanel.innerHTML = ans;
-	index++;
+	return ans;
+}
+function type(){
+    let typePanel = document.getElementById('textBox');
+	if(index<word.length){
+		typePanel.appendChild(word[index]);
+		index++;
+	}
     saying=(saying+1)%6;
     if(saying == 0){
         typePanel.className = 'noselect';
@@ -139,7 +136,7 @@ function loadPage(){
 		typePanel.innerText='';
 		typePanel.style.display='block';
 		options.innerHTML='';
-		word=剧情数据[1][1];
+		word=renderText(剧情数据[1][1]);
 		index=0;
 		myInterval=setInterval(type, 100);
 		winClick=true;
@@ -347,6 +344,13 @@ window.onload=function(){
 	let audioRec=数据.音乐;
 	数据.音乐='';
 	播放音乐(audioRec);
+	window.onkeypress=function(event){
+		if(event.key==' '){
+			let jumpLab=document.createElement('a');
+			jumpLab.href=document.getElementById('backgroundImage').src;
+			jumpLab.click();
+		}
+	}
 	window.onclick=function () {
 		if(clickSolved){
 			clickSolved=false;
@@ -358,28 +362,15 @@ window.onload=function(){
 			return;
 		}
 		if(winClick){
-			if(index<word.length-1){
-				index=word.length;
-			}else{
-				let ans='';
-				let ign=false;
-				for(let i=0;i<word.length;i++){
-					if(word[i]=='\t'){
-						ign=!ign;
-						continue;
-					}
-					if(!ign&&word[i]=='*'&&i+1<word.length&&word[i+1]=='*'){
-						i++;
-						continue;
-					}
-					if(!ign&&word[i]=='#'&&i+1<word.length&&word[i+1]=='#'){
-						i++;
-						continue;
-					}
-					ans+=word[i];
+			let typePanel = document.getElementById('textBox');
+			if(index<word.length){
+				while(index<word.length){
+					typePanel.appendChild(word[index]);
+					index++;
 				}
-				if(ans!=''){
-					数据.回想+=ans+'\n\n';
+			}else{
+				if(typePanel.innerText!=''){
+					数据.回想+=typePanel.innerText+'\n\n';
 				}
 				数据.页码=剧情[数据.页码][1][2];
 				loadPage();
