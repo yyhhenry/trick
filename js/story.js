@@ -20,7 +20,10 @@ function 播放音乐(s){
 		数据.音乐=s;
 		audio.load();
 		audio.pause();
-		audio.play();
+		audio.oncanplay=function(){
+			alert('loaded');
+			audio.play();
+		}
 	}
 }
 剧情=[
