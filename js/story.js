@@ -19,6 +19,9 @@ function 播放音乐(s){
 		audio.src=s;
 		数据.音乐=s;
 		audio.load();
+		audio.oncanplay=function(){
+			audio.play();
+		}
 	}
 }
 剧情=[
