@@ -19,11 +19,6 @@ function 播放音乐(s){
 		audio.src=s;
 		数据.音乐=s;
 		audio.load();
-		audio.pause();
-		audio.oncanplay=function(){
-			alert('loaded');
-			audio.play();
-		}
 	}
 }
 剧情=[
