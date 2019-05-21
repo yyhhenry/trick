@@ -194,6 +194,7 @@ function replay(){
 	clickSolved=true;
 	数据.页码=0;
 	数据.回想='';
+	播放音乐();
 	loadPage();
 }
 let save;
