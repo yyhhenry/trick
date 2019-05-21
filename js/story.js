@@ -25,6 +25,10 @@ function 播放音乐(s){
 	}
 }
 剧情=[
+	[
+		['img/background.jpg','','img/front.jpg',''],
+			['','']
+	],
 	function(){
 		播放音乐('./audio/神秘园之歌.mp3');
 	},
