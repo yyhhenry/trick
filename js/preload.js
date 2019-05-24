@@ -7,11 +7,16 @@ let source=[
 ];
 function preload(ind){
 	if(ind==source.length){
-		onloaded();
+		$(document.getElementById('loading')).slideUp(1500);
+		setTimeout(onloaded,1500);
 		return;
 	}
-	$.get(source[ind]);
-	preload(ind+1);
+	$.get(source[ind],function(){
+		preload(ind+1);
+	}).fail(function(){
+		preload(ind+1);
+	});
+	
 }
 window.onload=function(){
 	preload(0);

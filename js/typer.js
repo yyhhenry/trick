@@ -345,7 +345,6 @@ onloaded=function(){
 	let audioRec=数据.音乐;
 	数据.音乐='';
 	播放音乐(audioRec);
-	$(document.getElementById('loading')).slideUp(1500);
 	window.onkeypress=function(event){
 		if(event.key==' '){
 			let jumpLab=document.createElement('a');
