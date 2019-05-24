@@ -13,7 +13,7 @@ function preload(ind){
 		setTimeout(onloaded,3000);
 		return;
 	}
-	$(loadingFile).html('正在下载资源'+source[ind]+'（'+ind+'/'+source.length+'）');
+	$(loadingFile).html('正在加载资源'+source[ind]+'（'+ind+'/'+source.length+'）');
 	$.get(source[ind],function(){
 		preload(ind+1);
 	}).fail(function(){
