@@ -9,11 +9,11 @@ function preload(ind){
 	let loadingFile=document.getElementById('loadingFile');
 	if(ind==source.length){
 		$(loadingFile).html('预加载结束');
-		$(document.getElementById('loading')).slideUp(1500);
-		setTimeout(onloaded,1500);
+		$(document.getElementById('loading')).slideUp(3000);
+		setTimeout(onloaded,3000);
 		return;
 	}
-	$(loadingFile).html('下载资源'+source[ind]+'（'+ind+'/'+source.length+'）');
+	$(loadingFile).html('正在下载资源'+source[ind]+'（'+ind+'/'+source.length+'）');
 	$.get(source[ind],function(){
 		preload(ind+1);
 	}).fail(function(){
