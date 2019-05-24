@@ -334,7 +334,7 @@ function resize(){
 window.onresize=function(){
 	resize();
 }
-window.onload=function(){
+onloaded=function(){
 	if(window.localStorage.默认存档!=null){
 		数据=JSON.parse(window.localStorage.默认存档);
 	}else{
@@ -345,6 +345,7 @@ window.onload=function(){
 	let audioRec=数据.音乐;
 	数据.音乐='';
 	播放音乐(audioRec);
+	$(document.getElementById('loading')).slideUp(1500);
 	window.onkeypress=function(event){
 		if(event.key==' '){
 			let jumpLab=document.createElement('a');
