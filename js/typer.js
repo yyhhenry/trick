@@ -335,7 +335,7 @@ window.onresize=function(){
 	resize();
 }
 onloaded=function(){
-	if(window.localStorage.默认存档!=null){
+	if(window.localStorage.默认存档!=null&&window.localStorage.默认存档!='undefined'){
 		数据=JSON.parse(window.localStorage.默认存档);
 	}else{
 		数据={页码:0,回想:'',音乐:''};
