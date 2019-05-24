@@ -387,3 +387,51 @@ window.onload=function(){
 window.onbeforeunload=function(){
 	window.localStorage.默认存档=JSON.stringify(数据);
 }
+/*
+{
+	type:'background',
+	background:'base64',
+},
+{
+	type:'charactors',
+	charactors:[
+		{
+			graph:'base64',
+			zIndex:0,
+			bright:true,
+			
+		},
+		{
+			graph:'base64',
+			zIndex:1,
+			bright:false
+		}
+	]
+},
+{
+	type:'music',
+	music:'url'
+},
+{
+	type:'speak',
+	speaker:'name',
+	sentence:'value'
+},
+{
+	type:'options',
+	options:[
+		{
+			sentence:'value',
+			function:function(){}
+		},
+		{
+			sentence:'value',
+			function:function(){}
+		}
+	]
+},
+{
+	type:'function',
+	function:function(){}
+}
+*/
