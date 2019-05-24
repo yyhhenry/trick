@@ -83,13 +83,6 @@ function loadCG(){
 		}
 		plh[i-1].style.display='inline';
 		plh[i-1].src=graphUrl;
-		if(graphList[graphUrl]==null){
-			plh[i-1].style.height='100%';
-			plh[i-1].style.paddingTop=0;
-		}else{
-			plh[i-1].style.height=document.documentElement.clientHeight*graphList[graphUrl];
-			plh[i-1].style.paddingTop=document.documentElement.clientHeight*(1-graphList[graphUrl]);
-		}
 	}
 }
 function loadPage(){
@@ -130,6 +123,7 @@ function loadPage(){
 				typePanel.innerText='';
 				typePanel.style.display='none';
 				options.innerHTML='';
+				winClick=true;
 				return;
 			}
 		}
@@ -331,9 +325,6 @@ function resize(){
 	saveButton.style.marginTop=document.documentElement.clientHeight*0.015+'px';
 	saveButton.style.marginLeft=document.documentElement.clientWidth*0.01+'px';
 }
-window.onresize=function(){
-	resize();
-}
 onloaded=function(){
 	if(window.localStorage.默认存档!=null&&window.localStorage.默认存档!='undefined'){
 		数据=JSON.parse(window.localStorage.默认存档);
@@ -351,6 +342,9 @@ onloaded=function(){
 			jumpLab.href=document.getElementById('backgroundImage').src;
 			jumpLab.click();
 		}
+	}
+	window.onresize=function(){
+		resize();
 	}
 	window.onclick=function () {
 		if(clickSolved){
@@ -383,55 +377,57 @@ onloaded=function(){
 			window.onclick();
 		}
 	}
-}
-window.onbeforeunload=function(){
-	window.localStorage.默认存档=JSON.stringify(数据);
+	window.onbeforeunload=function(){
+		window.localStorage.默认存档=JSON.stringify(数据);
+	}
 }
 /*
-{
-	type:'background',
-	background:'base64',
-},
-{
-	type:'charactors',
-	charactors:[
-		{
-			graph:'base64',
-			zIndex:0,
-			bright:true,
-			
-		},
-		{
-			graph:'base64',
-			zIndex:1,
-			bright:false
-		}
-	]
-},
-{
-	type:'music',
-	music:'url'
-},
-{
-	type:'speak',
-	speaker:'name',
-	sentence:'value'
-},
-{
-	type:'options',
-	options:[
-		{
-			sentence:'value',
-			function:function(){}
-		},
-		{
-			sentence:'value',
-			function:function(){}
-		}
-	]
-},
-{
-	type:'function',
-	function:function(){}
-}
+剧情['index']={
+	{
+		type:'background',
+		background:'base64',
+	},
+	{
+		type:'charactors',
+		charactors:[
+			{
+				graph:'base64',
+				zIndex:0,
+				bright:true,
+				
+			},
+			{
+				graph:'base64',
+				zIndex:1,
+				bright:false
+			}
+		]
+	},
+	{
+		type:'music',
+		music:'url'
+	},
+	{
+		type:'speak',
+		speaker:'name',
+		sentence:'value'
+	},
+	{
+		type:'options',
+		options:[
+			{
+				sentence:'value',
+				function:function(){}
+			},
+			{
+				sentence:'value',
+				function:function(){}
+			}
+		]
+	},
+	{
+		type:'function',
+		function:function(){}
+	}
+};
 */

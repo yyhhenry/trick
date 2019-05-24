@@ -9,8 +9,8 @@ function preload(ind){
 	let loadingFile=document.getElementById('loadingFile');
 	if(ind==source.length){
 		$(loadingFile).html('预加载结束');
-		$(document.getElementById('loading')).slideUp(3000);
-		setTimeout(onloaded,3000);
+		$(document.getElementById('loading')).slideUp(2000);
+		setTimeout(onloaded,0);
 		return;
 	}
 	$(loadingFile).html('正在加载资源'+source[ind]+'（'+ind+'/'+source.length+'）');
