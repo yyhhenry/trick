@@ -7,14 +7,17 @@ let source=[
 ];
 function preload(ind){
 	if(ind==source.length){
+		console.log('预加载结束');
 		$(document.getElementById('loading')).slideUp(1500);
 		setTimeout(onloaded,1500);
 		return;
 	}
 	$.get(source[ind],function(){
 		preload(ind+1);
+		console.log(source[ind],'loaded');
 	}).fail(function(){
 		preload(ind+1);
+		console.log(source[ind],'failed');
 	});
 	
 }
