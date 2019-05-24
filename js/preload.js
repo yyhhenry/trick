@@ -6,18 +6,18 @@ let source=[
 	'img/front.jpg'
 ];
 function preload(ind){
+	let loadingFile=document.getElementById('loadingFile');
 	if(ind==source.length){
-		console.log('预加载结束');
+		$(loadingFile).html('预加载结束');
 		$(document.getElementById('loading')).slideUp(1500);
 		setTimeout(onloaded,1500);
 		return;
 	}
+	$(loadingFile).html('下载资源'+source+'（'+ind+'/'+source.length+'）');
 	$.get(source[ind],function(){
 		preload(ind+1);
-		console.log(source[ind],'loaded');
 	}).fail(function(){
 		preload(ind+1);
-		console.log(source[ind],'failed');
 	});
 	
 }
